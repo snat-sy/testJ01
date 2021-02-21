@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Main {
+public class Main2 {
     public static final int MAX_PASSWORD = 9999;
 
     public static void main(String[] args) {
@@ -50,24 +50,23 @@ public class Main {
     }
 
     private static class Vault {
-        private int password;
+        private static int password;
 
         public Vault(int password) {
-            this.password = password;
+            Vault.password = password;
         }
 
-        public boolean isCorrectPassword(int guess) {
+        public static boolean isCorrectPassword(int guess) {
             try {
                 Thread.sleep(5);
             } catch (InterruptedException e) {
             }
-            return this.password == guess;
+            return Vault.password == guess;
         }
     }
 
     private static abstract class HackerThread extends Thread {
         protected Vault vault;
-
         public HackerThread(Vault vault) {
             this.vault = vault;
             this.setName(this.getClass().getSimpleName());
